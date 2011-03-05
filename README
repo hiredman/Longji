@@ -1,0 +1,40 @@
+# longji
+
+Longji lets you specify which namespaces are allowed to use functions
+from a given namespace and warns you if that constraint is violated.
+
+Longji can help enforce a layered approach to project design.
+
+## Usage
+
+= 
+
+(ns foo.bar
+ {:only-from [a.b #"^x"]})
+
+= 
+
+> lein longji foo.bar
+
+=
+
+will warn you if any namespaces besides a.b and namespaces starting
+with x refer to vars from foo.bar.
+
+=
+
+Warning: foo.bar used from x.y
+
+=
+
+> lein longji
+
+=
+
+will check all namespaces in the project source-path
+
+## License
+
+Copyright (C) 2010 Kevin Downey
+
+Distributed under the Eclipse Public License, the same as Clojure.
