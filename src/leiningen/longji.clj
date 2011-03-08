@@ -2,7 +2,7 @@
   (:use [clojure.contrib.find-namespaces :only [find-namespaces-in-dir]]
         [clojure.java.io :only [file]]))
 
-(defn unathorized-use [ns]
+(defn unauthorized-use [ns]
   (let [target-ns (create-ns ns)
         {:keys [only-from]} (meta target-ns)
         permited-users (fn [a-ns-name]
@@ -37,5 +37,5 @@
            (require (quote ~namespace))
            (catch Exception _#)))
       (for [namespace (if (seq args) (map symbol args) all-namespaces)]
-        `((resolve (quote leiningen.longji/unathorized-use))
+        `((resolve (quote leiningen.longji/unauthorized-use))
           (quote ~namespace)))))))
